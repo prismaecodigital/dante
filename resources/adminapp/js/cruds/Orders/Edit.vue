@@ -151,6 +151,7 @@
                 <th>Satuan</th>
                 <th>Harga</th>                
                 <th>Ket</th>
+                <th>Notes</th>
               </thead>
               <tbody>
                 <tr v-for="(item, k) in entry.items" :key="k">
@@ -171,6 +172,9 @@
                   </td>
                   <td>
                       <input class="form-control wrapText" type="text" :value="item.ket" @input="updateItemKet(k, $event)"/>
+                  </td>
+                  <td>
+                      <input class="form-control wrapText" type="text" :value="item.notes" @input="updateItemNotes(k, $event)"/>
                   </td>
                 </tr>
               </tbody>
@@ -244,6 +248,7 @@ export default {
       'setItemSatuan',
       'setItemPrice',
       'setItemKet',
+      'setNotes',
     ]),
     updateDate(e) {
       this.setDate(e.target.value)
@@ -257,7 +262,10 @@ export default {
     updateComplaint(e) {
       this.setComplaint(e.target.value)
     },
-        updateItemJenisPekerjaan(index, event, val) {
+    updateNotes(e) {
+      this.setNotes(e.target.value)
+    },
+    updateItemJenisPekerjaan(index, event, val) {
       val = event.target.value
       this.setItemJenisPekerjaan({index, val});
     },
@@ -280,6 +288,10 @@ export default {
     updateItemKet(index, event, val) {
       val = event.target.value
       this.setItemKet({index, val})
+    },
+    updateItemNotes(index, event, val) {
+      val = event.target.value
+      this.setItemNotes({index, val})
     },
     getRoute(name) {
       return `${axios.defaults.baseURL}${name}/media`

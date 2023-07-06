@@ -79,6 +79,14 @@
                       </tr>
                       <tr>
                         <td class="text-primary">
+                          {{ $t('cruds.order.fields.notes') }}
+                        </td>
+                        <td>
+                          {{ entry.notes }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-primary">
                           {{ $t('cruds.order.fields.photodata') }}
                         </td>
                         <td>

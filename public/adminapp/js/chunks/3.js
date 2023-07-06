@@ -256,6 +256,8 @@ var render = function render() {
     staticClass: "text-primary"
   }, [_vm._v("\n                        " + _vm._s(_vm.$t("cruds.order.fields.complaint")) + "\n                      ")]), _vm._v(" "), _c("td", [_vm._v("\n                        " + _vm._s(_vm.entry.complaint) + "\n                      ")])]), _vm._v(" "), _c("tr", [_c("td", {
     staticClass: "text-primary"
+  }, [_vm._v("\n                        " + _vm._s(_vm.$t("cruds.order.fields.notes")) + "\n                      ")]), _vm._v(" "), _c("td", [_vm._v("\n                        " + _vm._s(_vm.entry.notes) + "\n                      ")])]), _vm._v(" "), _c("tr", [_c("td", {
+    staticClass: "text-primary"
   }, [_vm._v("\n                        " + _vm._s(_vm.$t("cruds.order.fields.photodata")) + "\n                      ")]), _vm._v(" "), _c("td", [_c("datatable-attachments", {
     attrs: {
       row: _vm.entry,

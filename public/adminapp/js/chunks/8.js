@@ -41,7 +41,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
-  methods: Object(C_Users_62895_laravel9_dante_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_dante_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('OrdersSingle', ['fetchEditData', 'updateData', 'resetState', 'setDate', 'setCustomer', 'setAddress', 'setComplaint', 'insertPhotodataFile', 'removePhotodataFile', 'insertPhotobeforeFile', 'removePhotobeforeFile', 'insertPhotoafterFile', 'removePhotoafterFile', 'setItems', 'setItemJenisPekerjaan', 'setItemLokasi', 'setItemQty', 'setItemSatuan', 'setItemPrice', 'setItemKet'])), {}, {
+  methods: Object(C_Users_62895_laravel9_dante_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(C_Users_62895_laravel9_dante_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('OrdersSingle', ['fetchEditData', 'updateData', 'resetState', 'setDate', 'setCustomer', 'setAddress', 'setComplaint', 'insertPhotodataFile', 'removePhotodataFile', 'insertPhotobeforeFile', 'removePhotobeforeFile', 'insertPhotoafterFile', 'removePhotoafterFile', 'setItems', 'setItemJenisPekerjaan', 'setItemLokasi', 'setItemQty', 'setItemSatuan', 'setItemPrice', 'setItemKet', 'setNotes'])), {}, {
     updateDate: function updateDate(e) {
       this.setDate(e.target.value);
     },
@@ -53,6 +53,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     updateComplaint: function updateComplaint(e) {
       this.setComplaint(e.target.value);
+    },
+    updateNotes: function updateNotes(e) {
+      this.setNotes(e.target.value);
     },
     updateItemJenisPekerjaan: function updateItemJenisPekerjaan(index, event, val) {
       val = event.target.value;
@@ -92,6 +95,13 @@ __webpack_require__.r(__webpack_exports__);
     updateItemKet: function updateItemKet(index, event, val) {
       val = event.target.value;
       this.setItemKet({
+        index: index,
+        val: val
+      });
+    },
+    updateItemNotes: function updateItemNotes(index, event, val) {
+      val = event.target.value;
+      this.setItemNotes({
         index: index,
         val: val
       });
@@ -390,6 +400,19 @@ var render = function render() {
           return _vm.updateItemKet(k, $event);
         }
       }
+    })]), _vm._v(" "), _c("td", [_c("input", {
+      staticClass: "form-control wrapText",
+      attrs: {
+        type: "text"
+      },
+      domProps: {
+        value: item.notes
+      },
+      on: {
+        input: function input($event) {
+          return _vm.updateItemNotes(k, $event);
+        }
+      }
     })])]);
   }), 0)])], 1), _vm._v(" "), _c("div", {
     staticClass: "card-footer"
@@ -413,7 +436,7 @@ var staticRenderFns = [function () {
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("thead", [_c("th", [_vm._v("Jenis Pekerjaan")]), _vm._v(" "), _c("th", [_vm._v("Lokasi")]), _vm._v(" "), _c("th", [_vm._v("Jumlah")]), _vm._v(" "), _c("th", [_vm._v("Satuan")]), _vm._v(" "), _c("th", [_vm._v("Harga")]), _vm._v(" "), _c("th", [_vm._v("Ket")])]);
+  return _c("thead", [_c("th", [_vm._v("Jenis Pekerjaan")]), _vm._v(" "), _c("th", [_vm._v("Lokasi")]), _vm._v(" "), _c("th", [_vm._v("Jumlah")]), _vm._v(" "), _c("th", [_vm._v("Satuan")]), _vm._v(" "), _c("th", [_vm._v("Harga")]), _vm._v(" "), _c("th", [_vm._v("Ket")]), _vm._v(" "), _c("th", [_vm._v("Notes")])]);
 }];
 render._withStripped = true;
 
