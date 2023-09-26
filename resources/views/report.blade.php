@@ -152,6 +152,7 @@ img {
 		</tr>
 	</thead>
 	<tbody>
+	    @if(!empty($order->photodata->first()))
 		@foreach ($order->photodata as $index => $photodata)
 		<tr>
 			<td style="width: 33.33%;">
@@ -165,6 +166,22 @@ img {
 			</td>
 		</tr>
 		@endforeach
+		@endif
+	    @if(!empty($order->photoafter->first()) && empty($order->photodata->first()))
+		@foreach ($order->photoafter as $index => $photoafter)
+		<tr>
+			<td style="width: 33.33%;">
+				<img src="{{$order->photodata[$index]['path'] ?? ''}}" style="width: auto;" alt="">
+			</td>
+			<td style="width: 33.33%;">
+				<img src="{{$order->photobefore[$index]['path'] ?? ''}}" style="width: auto;" alt="">
+			</td>
+			<td style="width: 33.33%;">
+				<img src="{{$order->photoafter[$index]['path'] ?? ''}}" style="width: auto;" alt="">
+			</td>
+		</tr>
+		@endforeach
+	    @endif
 	</tbody>
 </table>
 
