@@ -128,7 +128,7 @@ class OrdersApiController extends Controller
 
     public function show(Order $Order)
     {
-        return new OrderResource($Order->load(['items']));
+        return new OrderResource($Order->load(['items','datas']));
     }
 
     public function update(UpdateOrderRequest $request, Order $order)
