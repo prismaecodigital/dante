@@ -159,6 +159,46 @@
               </tbody>
             </table>
           </div>
+          <div v-if="entry.jenis_order === '01'" class="card-body">
+            <bootstrap-alert />
+            <table class="table table-bordered" name="inputItem">
+              <thead>
+                <th>Lokasi</th>
+                <th>Ampere Sebelum</th>
+                <th>Ampere Sesudah</th>
+                <th>Voltase Sebelum</th>
+                <th>Voltase Sesudah</th>
+                <th>Refrigen Sebelum</th>
+                <th>Refrigen Sesudah</th>
+               
+              </thead>
+              <tbody>
+                <tr v-for="(datax, k) in entry.datas" :key="k">
+                  <td>
+                      <input disabled class="form-control wrapText" type="text" :value="datax.lokasi"/>
+                  </td>
+                  <td>
+                      <input disabled class="form-control wrapText" type="text" :value="datax.ampere_sebelum"/>
+                  </td>
+                  <td>
+                      <input disabled class="form-control wrapText" type="text" :value="datax.ampere_sesudah"/>
+                  </td>
+                  <td>
+                      <input disabled class="form-control wrapText" type="text" :value="datax.voltase_sebelum"/>
+                  </td>
+                  <td>
+                      <input disabled class="form-control wrapText" type="text" :value="datax.voltase_sesudah"/>
+                  </td>
+                  <td>
+                      <input disabled class="form-control wrapText" type="text" :value="datax.refrigen_sebelum"/>
+                  </td>
+                  <td>
+                      <input disabled class="form-control wrapText" type="text" :value="datax.refrigen_sesudah"/>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

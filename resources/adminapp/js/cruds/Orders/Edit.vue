@@ -19,7 +19,7 @@
             <div class="card-body">
               <bootstrap-alert />
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <div
                     class="form-group bmd-form-group"
                     :class="{
@@ -45,6 +45,25 @@
                   <div
                     class="form-group bmd-form-group"
                     :class="{
+                      'is-filled': entry.jenis_order,
+                      'is-focused': activeField == 'jenis_order'
+                    }"
+                  >
+                    <label class="">{{
+                      $t('cruds.order.fields.jenis_order')
+                    }}</label>
+                    <v-select
+                      name="jenis_order"
+                      :key="'jenis_order-field'"
+                      :value="entry.jenis_order"
+                      :options="lists.jenis_order"
+                      :reduce="entry => entry.value"
+                      disabled
+                    />
+                  </div>
+                  <div
+                    class="form-group bmd-form-group"
+                    :class="{
                       'is-filled': entry.customer,
                       'is-focused': activeField == 'customer'
                     }"
@@ -61,44 +80,7 @@
                       @blur="clearFocus"
                     />
                   </div>
-                  <div
-                    class="form-group bmd-form-group"
-                    :class="{
-                      'is-filled': entry.address,
-                      'is-focused': activeField == 'address'
-                    }"
-                  >
-                    <label class="bmd-label-floating">{{
-                      $t('cruds.order.fields.address')
-                    }}</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      :value="entry.address"
-                      @input="updateAddress"
-                      @focus="focusField('address')"
-                      @blur="clearFocus"
-                    />
-                  </div>
-                  <div
-                    class="form-group bmd-form-group"
-                    :class="{
-                      'is-filled': entry.complaint,
-                      'is-focused': activeField == 'complaint'
-                    }"
-                  >
-                    <label class="bmd-label-floating">{{
-                      $t('cruds.order.fields.complaint')
-                    }}</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      :value="entry.complaint"
-                      @input="updateComplaint"
-                      @focus="focusField('complaint')"
-                      @blur="clearFocus"
-                    />
-                  </div>
+                  
                   <div class="form-group">
                     <label>{{ $t('cruds.order.fields.photodata') }}</label>
                     <attachment
@@ -136,6 +118,65 @@
                       :accept="'image/*'"
                       @file-uploaded="insertPhotoafterFile"
                       @file-removed="removePhotoafterFile"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+<div
+                    class="form-group bmd-form-group"
+                    :class="{
+                      'is-filled': entry.address,
+                      'is-focused': activeField == 'address'
+                    }"
+                  >
+                    <label class="bmd-label-floating">{{
+                      $t('cruds.order.fields.address')
+                    }}</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      :value="entry.address"
+                      @input="updateAddress"
+                      @focus="focusField('address')"
+                      @blur="clearFocus"
+                    />
+                  </div>
+                  <div
+                    class="form-group bmd-form-group"
+                    :class="{
+                      'is-filled': entry.complaint,
+                      'is-focused': activeField == 'complaint'
+                    }"
+                  >
+                    <label class="">{{
+                      $t('cruds.order.fields.complaint')
+                    }}</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      :value="entry.complaint"
+                      @input="updateComplaint"
+                      @focus="focusField('complaint')"
+                      @blur="clearFocus"
+                    />
+                  </div>
+                  <div
+                    class="form-group bmd-form-group"
+                    :class="{
+                      'is-filled': entry.notes,
+                      'is-focused': activeField == 'notes'
+                    }"
+                  >
+                    <label class="bmd-label-floating">{{
+                      $t('cruds.order.fields.notes')
+                    }}</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      :value="entry.notes"
+                      @input="updateNotes"
+                      @focus="focusField('notes')"
+                      @blur="clearFocus"
                     />
                   </div>
                 </div>
@@ -180,6 +221,52 @@
               </tbody>
             </table>
           </div>
+
+          <div v-if="entry.jenis_order === '01' && entry.datas.length > 0" id="data-header" class="card-header card-header-primary card-header-icon">
+            <h4 class="card-title">
+              <strong>Data AC Before After</strong>
+            </h4>
+          </div>
+            <br>
+          <div v-if="entry.jenis_order === '01' && entry.datas.length > 0" id="data-body" class="card-body">
+            <bootstrap-alert />
+            <table class="table table-bordered" name="inputItem">
+              <thead>
+                <th>Lokasi</th>
+                <th>Ampere Sebelum</th>
+                <th>Ampere Sesudah</th>
+                <th>Voltase Sebelum</th>
+                <th>Voltase Susudah</th>
+                <th>Refrigen Sebelum</th>
+                <th>Refrigen Sesudah</th>
+              </thead>
+              <tbody>
+                <tr v-for="(dataAc, k) in entry.datas" :key="k">
+                  <td>
+                      <input class="form-control wrapText" type="text" :value="dataAc.lokasi" @input="updateDataLokasi(k, $event)" />
+                  </td>
+                  <td>
+                      <input class="form-control wrapText" type="text" :value="dataAc.ampere_sebelum" @input="updateDataAmpereSebelum(k, $event)" />
+                  </td>
+                  <td>
+                      <input class="form-control wrapText" type="text" :value="dataAc.ampere_sesudah" @input="updateDataAmpereSesudah(k, $event)" />
+                  </td>
+                  <td>
+                      <input class="form-control wrapText" type="text" :value="dataAc.voltase_sebelum" @input="updateDataVoltaseSebelum(k, $event)" />
+                  </td>
+                  <td>
+                      <input class="form-control wrapText" type="text" :value="dataAc.voltase_sesudah" @input="updateDataVoltaseSesudah(k, $event)" />
+                  </td>
+                  <td>
+                      <input class="form-control wrapText" type="text" :value="dataAc.refrigen_sebelum" @input="updateDataRefrigenSebelum(k, $event)"/>
+                  </td>
+                  <td>
+                      <input class="form-control wrapText" type="text" :value="dataAc.refrigen_sesudah" @input="updateDataRefrigenSesudah(k, $event)"/>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
             <div class="card-footer">
               <vue-button-spinner
                 class="btn-primary"
@@ -212,7 +299,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('OrdersSingle', ['entry', 'loading'])
+    ...mapGetters('OrdersSingle', ['entry', 'loading', 'lists'])
   },
   beforeDestroy() {
     this.resetState()
@@ -249,6 +336,15 @@ export default {
       'setItemPrice',
       'setItemKet',
       'setNotes',
+      'addData',
+      'deleteData',
+      'setDataAmpereSebelum',
+      'setDataAmpereSesudah',
+      'setDataVoltaseSebelum',
+      'setDataVoltaseSesudah',
+      'setDataRefrigenSebelum',
+      'setDataRefrigenSesudah',
+      'setDataLokasi',
     ]),
     updateDate(e) {
       this.setDate(e.target.value)
@@ -292,6 +388,54 @@ export default {
     updateItemNotes(index, event, val) {
       val = event.target.value
       this.setItemNotes({index, val})
+    },
+
+    // Data
+    updateDataAmpereSebelum(index, event, val) {
+      val = event.target.value
+      this.setDataAmpereSebelum({index, val})
+    },
+    updateDataAmpereSesudah(index, event, val) {
+      val = event.target.value
+      this.setDataAmpereSesudah({index, val})
+    },
+    updateDataVoltaseSebelum(index, event, val) {
+      val = event.target.value
+      this.setDataVoltaseSebelum({index, val})
+    },
+    updateDataVoltaseSesudah(index, event, val) {
+      val = event.target.value
+      this.setDataVoltaseSesudah({index, val})
+    },
+    updateDataRefrigenSebelum(index, event, val) {
+      val = event.target.value
+      this.setDataRefrigenSebelum({index, val})
+    },
+    updateDataRefrigenSesudah(index, event, val) {
+      val = event.target.value
+      this.setDataRefrigenSesudah({index, val})
+    },
+    updateDataLokasi(index, event, val) {
+      val = event.target.value
+      this.setDataLokasi({index, val})
+    },
+    addRowData() {
+      this.addData()
+    },
+    deleteRowData(index, item) {
+      this.$swal({
+        title: 'Hapus Item ini ?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes',
+        showCloseButton: true,
+      }).then(result => {
+        if(result.isConfirmed) {
+          this.deleteData(index)
+        }
+      })      
     },
     getRoute(name) {
       return `${axios.defaults.baseURL}${name}/media`

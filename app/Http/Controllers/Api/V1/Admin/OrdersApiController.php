@@ -7,6 +7,7 @@ use App\Http\Resources\Admin\OrderResource;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Order;
 use App\Models\Item;
+use App\Models\DataAc;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -69,6 +70,22 @@ class OrdersApiController extends Controller
                 'order_id' => $order->id,
             ]);
         }
+
+        // Added data
+        if(count($request->datas) > 0) {
+            foreach($request->datas as $datax) {
+                $datax = DataAc::create([
+                    'order_id'          => $order->id,
+                    'lokasi'            => $datax['lokasi'],
+                    'ampere_sebelum'    => $datax['ampere_sebelum'],
+                    'ampere_sesudah'    => $datax['ampere_sesudah'],
+                    'voltase_sebelum'   => $datax['voltase_sebelum'],
+                    'voltase_sesudah'   => $datax['voltase_sesudah'],
+                    'refrigen_sebelum'  => $datax['refrigen_sebelum'],
+                    'refrigen_sesudah'  => $datax['refrigen_sesudah'],
+                ]);
+            }
+        }
         
         $mediaItems = Media::where('model_id', 0)->get();
 
@@ -129,6 +146,20 @@ class OrdersApiController extends Controller
             ]);
         }
 
+        if(count($request->datas) > 0) {
+            foreach($request->datas as $datax) {
+                DataAc::where('id', $datax['id'])->update([
+                    'lokasi'            => $datax['lokasi'],
+                    'ampere_sebelum'    => $datax['ampere_sebelum'],
+                    'ampere_sesudah'    => $datax['ampere_sesudah'],
+                    'voltase_sebelum'   => $datax['voltase_sebelum'],
+                    'voltase_sesudah'   => $datax['voltase_sesudah'],
+                    'refrigen_sebelum'  => $datax['refrigen_sebelum'],
+                    'refrigen_sesudah'  => $datax['refrigen_sesudah'],
+                ]);
+            }
+        }
+
         $order->update($request->validated());
 
         $order->updateMedia($request->input('photodata', []), 'order_photodata');
@@ -143,7 +174,7 @@ class OrdersApiController extends Controller
     public function edit(Order $order)
     {
         return response([
-            'data' => new OrderResource($order->load(['items'])),
+            'data' => new OrderResource($order->load(['items', 'datas'])),
             'meta' => [
                 'jenis_order' => Order::JENIS_ORDER_SELECT,
             ],
@@ -182,9 +213,13 @@ class OrdersApiController extends Controller
 
     public function report($id)
     {
-        $order = Order::where('id', $id)->with('items')->first();
-
-        $pdf = PDF::loadview('report', $order);
+        $order = Order::where('id', $id)->with(['items', 'datas'])->first();
+        if($pdf->jenis_order === '01') {
+            $pdf = PDF::loadview('report', $order);
+        }
+        if($pdf->jenis_order === '02') {
+            $pdf = PDF::loadview('reportSipil', $order);
+        }
     	return $pdf->stream();
     }
 }

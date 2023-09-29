@@ -23,6 +23,15 @@ function initialState() {
           satuan : '',
           price : '',
           ket : '',
+        }],
+        datas: [{
+          lokasi: '',
+          ampere_sebelum: '',
+          ampere_sesudah: '',
+          voltase_sebelum: '',
+          voltase_sesudah: '',
+          refrigen_sebelum: '',
+          refrigen_sesudah: ''
         }]
       },
       lists: {
@@ -151,6 +160,27 @@ function initialState() {
     setDeletedAt({ commit }, value) {
       commit('setDeletedAt', value)
     },
+    setJenisOrder({ commit }, value) {
+      commit('setJenisOrder', value)
+    },
+    setNotes({ commit }, value) {
+      commit('setNotes', value)
+    },
+    addItem({commit}) {
+      commit('addItem')
+    },
+    exportData({commit}) {
+      commit('exportData')
+    },
+    deleteItem({commit}, index) {
+      commit('deleteItem', index)
+    },
+    addData({commit}) {
+      commit('addData')
+    },
+    deleteData({commit}, index) {
+      commit('deleteData', index)
+    },
     setItems({commit}, value) {
       commit('setItems', value)
     },
@@ -172,20 +202,29 @@ function initialState() {
     setItemKet({ commit }, {index, val}) {
       commit('setItemKet', {index, val})
     },
-    setJenisOrder({ commit }, value) {
-      commit('setJenisOrder', value)
+    setDatas({ commit }, value) {
+      commit('setDatas')
     },
-    setNotes({ commit }, value) {
-      commit('setNotes', value)
+    setDataLokasi({commit}, {index,val}) {
+      commit('setDataLokasi', {index, val})
     },
-    addItem({commit}) {
-      commit('addItem')
+    setDataAmpereSebelum({commit}, {index,val}) {
+      commit('setDataAmpereSebelum', {index, val})
     },
-    exportData({commit}) {
-      commit('exportData')
+    setDataAmpereSesudah({commit}, {index,val}) {
+      commit('setDataAmpereSesudah', {index, val})
     },
-    deleteItem({commit}, index) {
-      commit('deleteItem', index)
+    setDataVoltaseSebelum({commit}, {index,val}) {
+      commit('setDataVoltaseSebelum', {index, val})
+    },
+    setDataVoltaseSesudah({commit}, {index,val}) {
+      commit('setDataVoltaseSesudah', {index, val})
+    },
+    setDataRefrigenSebelum({commit}, {index,val}) {
+      commit('setDataRefrigenSebelum', {index, val})
+    },
+    setDataRefrigenSesudah({commit}, {index,val}) {
+      commit('setDataRefrigenSesudah', {index, val})
     },
     fetchCreateData({ commit }) {
       axios.get(`${route}/create`).then(response => {
@@ -265,27 +304,6 @@ function initialState() {
     setDeletedAt(state, value) {
       state.entry.deleted_at = value
     },
-    setItems(state, value) {
-      state.entry.items = value
-    },
-    setItemJenisPekerjaan(state, {index,val}) {
-      state.entry.items[index].jenis_pekerjaan = val
-    },
-    setItemLokasi(state, {index,val}) {
-      state.entry.items[index].lokasi = val
-    },
-    setItemSatuan(state, {index,val}) {
-      state.entry.items[index].satuan = val
-    },
-    setItemQty(state, {index,val}) {
-      state.entry.items[index].qty = val
-    },
-    setItemPrice(state, {index,val}) {
-      state.entry.items[index].price = val
-    },
-    setItemKet(state, {index,val}) {
-      state.entry.items[index].ket = val
-    },
     setJenisOrder(state, value) {
       state.entry.jenis_order = value
     },
@@ -307,6 +325,64 @@ function initialState() {
     },
     deleteItem(state, index) {
       state.entry.items.splice(index, 1)
+    },
+    addData(state) {
+      state.entry.datas.push({
+        ampere_sebelum: '',
+        ampere_sesudah: '',
+        voltase_sebelum: '',
+        voltase_sesudah: '',
+        refrigen_sebelum: '',
+        refrigen_sesudah: ''
+      });
+    },
+    deleteData(state, index) {
+      state.entry.datas.splice(index, 1)
+    },
+    setItems(state, value) {
+      state.entry.items = value
+    },
+    setItemJenisPekerjaan(state, {index,val}) {
+      state.entry.items[index].jenis_pekerjaan = val
+    },
+    setItemLokasi(state, {index,val}) {
+      state.entry.items[index].lokasi = val
+    },
+    setItemSatuan(state, {index,val}) {
+      state.entry.items[index].satuan = val
+    },
+    setItemQty(state, {index,val}) {
+      state.entry.items[index].qty = val
+    },
+    setItemPrice(state, {index,val}) {
+      state.entry.items[index].price = val
+    },
+    setItemKet(state, {index,val}) {
+      state.entry.items[index].ket = val
+    },
+    setDatas(state, value) {
+      state.entry.datas = value
+    },
+    setDataLokasi(state, {index, val}) {
+      state.entry.datas[index].lokasi = val
+    },
+    setDataAmpereSebelum(state, {index, val}) {
+      state.entry.datas[index].ampere_sebelum = val
+    },
+    setDataAmpereSesudah(state, {index, val}) {
+      state.entry.datas[index].ampere_sesudah = val
+    },
+    setDataVoltaseSebelum(state, {index, val}) {
+      state.entry.datas[index].voltase_sebelum = val
+    },
+    setDataVoltaseSesudah(state, {index, val}) {
+      state.entry.datas[index].voltase_sesudah = val
+    },
+    setDataRefrigenSebelum(state, {index, val}) {
+      state.entry.datas[index].refrigen_sebelum = val
+    },
+    setDataRefrigenSesudah(state, {index, val}) {
+      state.entry.datas[index].refrigen_sesudah = val
     },
     setLoading(state, loading) {
       state.loading = loading

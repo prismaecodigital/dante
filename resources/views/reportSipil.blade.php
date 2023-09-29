@@ -138,60 +138,21 @@ img {
 </table>
 
 <table class="table1" style="width: 100%; padding-top: 10px;">
-	<thead>
-		<tr>
-			<td style="width: 33.33%; padding-bottom: 10px">
-				Data
-			</td>
-			<td style="width: 33.33%; padding-bottom: 10px">
-				Sebelum
-			</td>
-			<td style="width: 33.33%; padding-bottom: 10px">
-				Sesudah
-			</td>
-		</tr>
-	</thead>
 	<tbody>
-	    @if(!empty($order->photoafter->first()) && empty($order->photodata->first()))
-		@foreach ($order->photoafter as $index => $photoafter)
+	    @if(!empty($order->photodata->first()))
+		
 		<tr>
-			<td style="width: 33.33%;">
-				@foreach ($order->datas as $datax)
-					<span class="little-span">
-						Lokasi : {{$datax->lokasi}}
-					</span><br>
-					<span class="little-span">
-						Ampere Sebelum : {{$datax->ampere_sebelum}}
-					</span><br>
-					<span class="little-span">
-						Ampere Sesudah : {{$datax->ampere_sesudah}}
-					</span><br>
-					<span class="little-span">
-						Voltase Sebelum : {{$datax->voltase_sebelum}}
-					</span><br>
-					<span class="little-span">
-						Voltase Sesudah : {{$datax->voltase_sesudah}}
-					</span><br>
-					<span class="little-span">
-						Refrigen Sebelum : {{$datax->refrigen_sebelum}}
-					</span><br>
-					<span class="little-span">
-						Refrigen Sesudah : {{$datax->refrigen_sesudah}}
-					</span>
-				@endforeach
+			@foreach ($order->photodata as $index => $photodata)
+			<td>
+				<img src="{{$order->photodata[$index]['path'] ?? ''}}" style="width: auto;" alt="">
 			</td>
-			<td style="width: 33.33%;">
-				<img src="{{$order->photobefore[$index]['path'] ?? ''}}" style="width: auto;" alt="">
-			</td>
-			<td style="width: 33.33%;">
-				<img src="{{$order->photoafter[$index]['path'] ?? ''}}" style="width: auto;" alt="">
-			</td>
+			@endforeach
 		</tr>
-		@endforeach
-	    @endif
+		
+		@endif
 	</tbody>
 </table>
-<br>
+
 <b>Instruksi Pembayaran</b>
 <p style="font-size: 10pt">- Transfer a/n Muhammad Awaldianto. BCA No Rek. 0954366134</p>
 

@@ -104,6 +104,11 @@ class Order extends Model implements HasMedia
         return $this->hasMany(Item::class,'order_id');
     }
 
+    public function datas()
+    {
+        return $this->hasMany(DataAc::class, 'order_id');
+    }
+
     public function getJenisOrderLabelAttribute()
     {
         return collect(static::JENIS_ORDER_SELECT)->firstWhere('value', $this->jenis_order)['label'] ?? '';
