@@ -7,6 +7,7 @@ const set = key => (state, val) => {
       data: [],
       jsonData: [],
       total: 0,
+      jenis: [],
       query: {},
       loading: false
     }
@@ -16,6 +17,7 @@ const set = key => (state, val) => {
   
   const getters = {
     data: state => state.data,
+    jenis: state => state.jenis,
     total: state => state.total,
     loading: state => state.loading,
     jsonData: state => state.jsonData
@@ -28,8 +30,11 @@ const set = key => (state, val) => {
         .get(route, { params: state.query })
         .then(response => {
           commit('setData', response.data.data)
+          commit('setJenis', response.data.jenis)
           commit('setTotal', response.data.total)
           commit('setJsonData', response.data.data)
+
+          console.log(response);
         })
         .catch(error => {
           message = error.response.data.message || error.message
@@ -61,6 +66,7 @@ const set = key => (state, val) => {
   
   const mutations = {
     setData: set('data'),
+    setJenis: set('jenis'),
     setJsonData: set('jsonData'),
     setTotal: set('total'),
     setQuery(state, query) {

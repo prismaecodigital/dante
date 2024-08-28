@@ -19,10 +19,13 @@ use Illuminate\Support\Facades\Storage;
 
 class OrdersApiController extends Controller
 {
-    public function index()
-    {                
+    public function index(Request $request)
+    {
         return new OrderResource(Order::advancedFilter()
-                ->paginate(request('limit', 10)));        
+                ->when($request->filled('jenis'), function($query) use ($request){
+                    return $query->where('jenis_order', $request->query('jenis'));
+                })
+                ->paginate(request('limit', 10)));      
     }
 
     public function store(Request $request)

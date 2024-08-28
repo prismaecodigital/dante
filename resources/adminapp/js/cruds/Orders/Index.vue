@@ -58,6 +58,17 @@
                   :HeaderSettings="false"
                   :pageSizeOptions="[10, 25, 50, 100]"
                 >
+                  <span class="col-auto">
+                    <v-select
+                      label="label"
+                      v-model="query.jenis"
+                      class="d-block mb-3"
+                      :key="'jenis-field'"
+                      :options="jenis"
+                      :reduce="jenis => jenis.value"
+                      placeholder="Pilih jenis order"
+                    />
+                  </span>
                   <global-search :query="query" class="pull-left" />
                   <header-settings :columns="columns" class="pull-right" />
                 </datatable>
@@ -125,7 +136,7 @@ export default {
           colStyle: 'width: 150px;'
         }
       ],
-      query: { sort: 'date', order: 'desc', limit: 100, s: '' },
+      query: { sort: 'date', order: 'desc', limit: 100, s: '', jenis: '' },
       xprops: {
         module: 'OrdersIndex',
         route: 'orders',
@@ -141,7 +152,7 @@ export default {
     this.resetState()
   },
   computed: {
-    ...mapGetters('OrdersIndex', ['data', 'total', 'loading', 'jsonData'])
+    ...mapGetters('OrdersIndex', ['data', 'jenis', 'total', 'loading', 'jsonData'])
   },
   watch: {
     query: {
