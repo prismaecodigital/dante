@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Order;
 use App\Models\Item;
 use App\Models\DataAc;
+use App\Models\Service;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,6 +44,16 @@ class OrdersApiController extends Controller
         $data['code'] = $this->generateCode($data['created_at'], $data['jenis_order']);
 
         $order = Order::create($data);
+
+        $service = [
+            'upcoming_service' => $request->input('upcoming'),
+            'customer' => $request->input('customer'),
+            'address' => $request->input('address'),
+            'service' => $request->input('job'),
+            'latest_service' => $request->input('date'),
+            'status' => '0'
+        ];
+        Service::create($service);
 
         if ($media = $request->input('photodata', [])) {
             Media::whereIn('id', data_get($media, '*.id'))

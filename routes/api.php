@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:sanctum']], function () {
     // Abilities
     Route::apiResource('abilities', 'AbilitiesController', ['only' => ['index']]);
@@ -20,14 +22,16 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::post('orders/media', 'OrdersApiController@storeMedia')->name('orders.storeMedia');
     Route::post('orders/destroyMedia', 'OrdersApiController@destroyMedia')->name('orders.destroyMedia');
     Route::get('order/report/{id}', 'OrdersApiController@report');
+
     Route::resource('orders', 'OrdersApiController');
+    Route::resource('services', 'ServicesApiController');
     
     Route::resource('items', 'ItemApiController');
 
     // Change password
-        Route::get('password/edit', 'ChangePasswordController@edit')->name('password.edit');
-        Route::post('password', 'ChangePasswordController@update')->name('password.update');
-        Route::post('profile', 'ChangePasswordController@updateProfile')->name('password.updateProfile');
-        Route::post('profile/destroy', 'ChangePasswordController@destroy')->name('password.destroyProfile');
+    Route::get('password/edit', 'ChangePasswordController@edit')->name('password.edit');
+    Route::post('password', 'ChangePasswordController@update')->name('password.update');
+    Route::post('profile', 'ChangePasswordController@updateProfile')->name('password.updateProfile');
+    Route::post('profile/destroy', 'ChangePasswordController@destroy')->name('password.destroyProfile');
 
 });

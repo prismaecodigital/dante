@@ -12,6 +12,8 @@ import UsersIndex from './cruds/Users'
 import UsersSingle from './cruds/Users/single'
 import OrdersIndex from './cruds/Orders'
 import OrdersSingle from './cruds/Orders/single'
+import ServicesIndex from './cruds/Services'
+import ServicesSingle from './cruds/Services/single'
 
 Vue.use(Vuex)
 
@@ -28,7 +30,9 @@ export default new Vuex.Store({
     UsersIndex,
     UsersSingle,
     OrdersIndex,
-    OrdersSingle
+    OrdersSingle,
+    ServicesIndex,
+    ServicesSingle
   },
   strict: debug
 })

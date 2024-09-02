@@ -13,6 +13,8 @@ function initialState() {
         photodata: [],
         photobefore: [],
         photoafter: [],
+        upcoming: '',
+        job: '',
         created_at: '',
         updated_at: '',
         deleted_at: '',
@@ -150,6 +152,12 @@ function initialState() {
     },
     removePhotoafterFile({ commit }, file) {
       commit('removePhotoafterFile', file)
+    },
+    setUpcoming({ commit }, value) {
+      commit('setUpcoming', value);
+    },
+    setJob({ commit }, value) {
+      commit('setJob', value);
     },
     setCreatedAt({ commit }, value) {
       commit('setCreatedAt', value)
@@ -294,6 +302,12 @@ function initialState() {
       state.entry.photoafter = state.entry.photoafter.filter(item => {
         return item.id !== file.id
       })
+    },
+    setUpcoming(state, value) {
+      state.entry.upcoming = value
+    },
+    setJob(state, value) {
+      state.entry.job = value
     },
     setCreatedAt(state, value) {
       state.entry.created_at = value

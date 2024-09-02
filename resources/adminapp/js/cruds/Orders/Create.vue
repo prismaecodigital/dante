@@ -285,6 +285,53 @@
                   <i class="fa fa-plus-circle"></i>
                   Add Item
               </button>
+              <div class="row mt-3">
+                <div class="col-md-6">
+                  <div
+                    class="form-group bmd-form-group"
+                    :class="{
+                      'is-filled': entry.upcoming,
+                      'is-focused': activeField == 'upcoming'
+                    }"
+                  >
+                    <label class="bmd-label-floating required">{{
+                      $t('cruds.order.fields.upcoming')
+                    }}</label>
+                    <datetime-picker
+                      class="form-control"
+                      type="text"
+                      picker="date"
+                      :value="entry.upcoming"
+                      @input="updateUpcoming"
+                      @focus="focusField('upcoming')"
+                      @blur="clearFocus"
+                      required
+                    >
+                    </datetime-picker>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div
+                    class="form-group bmd-form-group"
+                    :class="{
+                      'is-filled': entry.job,
+                      'is-focused': activeField == 'job'
+                    }"
+                  >
+                    <label class="bmd-label-floating">{{
+                      $t('cruds.order.fields.job')
+                    }}</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      :value="entry.job"
+                      @input="updateJob"
+                      @focus="focusField('job')"
+                      @blur="clearFocus"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="card-footer">
               <vue-button-spinner
@@ -345,6 +392,8 @@ export default {
       'removePhotobeforeFile',
       'insertPhotoafterFile',
       'removePhotoafterFile',
+      'setUpcoming',
+      'setJob',
       'setItems',
       'setItemJenisPekerjaan',
       'setItemLokasi',
@@ -384,6 +433,12 @@ export default {
     },
     updateComplaint(e) {
       this.setComplaint(e.target.value)
+    },
+    updateUpcoming(e) {
+      this.setUpcoming(e.target.value)
+    },
+    updateJob(e) {
+      this.setJob(e.target.value)
     },
     getRoute(name) {
       return `${axios.defaults.baseURL}${name}/media`

@@ -42,6 +42,18 @@ const routes = [
         meta: { title: 'cruds.order.title' }
       },
       {
+        path: 'services',
+        name: 'services.index',
+        component: () => import('@cruds/Services/Index.vue'),
+        meta: { title: 'cruds.service.title' }
+      },
+      {
+        path: 'services/create',
+        name: 'services.create',
+        // component: () => import('@cruds/Services/Create.vue'),
+        meta: { title: 'cruds.service.title' }
+      },
+      {
         path: 'user-management',
         name: 'user_management',
         component: View,

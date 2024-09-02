@@ -39,6 +39,12 @@ export default {
           path: { name: 'orders.index' },
           gate: 'order_access'
         },
+        {
+          title: 'cruds.service.title',
+          icon: 'build',
+          path: { name: 'services.index' },
+          gate: 'service_access'
+        },
         // {
         //   title: 'cruds.userManagement.title',
         //   icon: 'person',
