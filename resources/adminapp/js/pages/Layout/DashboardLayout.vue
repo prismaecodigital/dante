@@ -45,20 +45,20 @@ export default {
           path: { name: 'services.index' },
           gate: 'service_access'
         },
-        {
-          title: 'cruds.userManagement.title',
-          icon: 'person',
-          path: { name: 'user_management' },
-          gate: 'user_management_access',
-          children: [
-            {
-              title: 'cruds.user.title',
-              icon: 'person',
-              path: { name: 'users.index' },
-              gate: 'user_access'
-            }
-          ]
-        }
+        // {
+        //   title: 'cruds.userManagement.title',
+        //   icon: 'person',
+        //   path: { name: 'user_management' },
+        //   gate: 'user_management_access',
+        //   children: [
+        //     {
+        //       title: 'cruds.user.title',
+        //       icon: 'person',
+        //       path: { name: 'users.index' },
+        //       gate: 'user_access'
+        //     }
+        //   ]
+        // }
       ]
     }
   }
