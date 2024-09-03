@@ -28,23 +28,23 @@ export default {
   data() {
     return {
       sidebarLinks: [
-        {
-          title: 'global.dashboard',
-          icon: 'dashboard',
-          path: { name: 'dashboard' }
-        },
-        {
-          title: 'cruds.order.title',
-          icon: 'table_view',
-          path: { name: 'orders.index' },
-          gate: 'order_access'
-        },
-        {
-          title: 'cruds.service.title',
-          icon: 'build',
-          path: { name: 'services.index' },
-          gate: 'service_access'
-        },
+        // {
+        //   title: 'global.dashboard',
+        //   icon: 'dashboard',
+        //   path: { name: 'dashboard' }
+        // },
+        // {
+        //   title: 'cruds.order.title',
+        //   icon: 'table_view',
+        //   path: { name: 'orders.index' },
+        //   gate: 'order_access'
+        // },
+        // {
+        //   title: 'cruds.service.title',
+        //   icon: 'build',
+        //   path: { name: 'services.index' },
+        //   gate: 'service_access'
+        // },
         // {
         //   title: 'cruds.userManagement.title',
         //   icon: 'person',
