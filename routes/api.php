@@ -25,6 +25,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     Route::resource('orders', 'OrdersApiController');
     Route::resource('services', 'ServicesApiController');
+    Route::post('services/success/{service}', 'ServicesApiController@success')->name('services.success');
     
     Route::resource('items', 'ItemApiController');
 

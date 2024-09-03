@@ -28,6 +28,7 @@ class Service extends Model
         'address',
         'service',
         'latest_service',
+        'status',
         'created_at',
         'updated_at',
     ];
@@ -39,6 +40,7 @@ class Service extends Model
         'address',
         'service',
         'latest_service',
+        'status',
         'created_at',
         'updated_at',
     ];
@@ -49,6 +51,7 @@ class Service extends Model
         'address',
         'service',
         'latest_service',
+        'status'
     ];
 
     protected function serializeDate(DateTimeInterface $date)

@@ -2,6 +2,7 @@
 
 return [
     'actions'                        => 'Aksi',
+    'service_success'                => 'Servis Selesai',
     'approve_success'                => 'Approve Sukses',
     'reject_success'                 => 'Reject Sukses',
     'approve_failed'                 => 'Approve Failed. Try Again.',

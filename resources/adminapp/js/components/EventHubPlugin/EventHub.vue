@@ -20,7 +20,7 @@ export default {
     this.$eventHub.$on('create-success', this.itemCreated)
     this.$eventHub.$on('update-success', this.itemUpdated)
     this.$eventHub.$on('delete-success', this.itemDeleted)
-    this.$eventHub.$on('approve-success', this.itemApproved)
+    this.$eventHub.$on('service-success', this.itemSuccessed)
   },
   methods: {
     itemCreated() {
@@ -50,11 +50,11 @@ export default {
         { ...this.notificationSettings, type: 'warning' }
       )
     },
-    itemApproved() {
+    itemSuccessed() {
       this.$jquery.notify(
         {
           icon: 'check',
-          message: this.$i18n.t('global.approve_success')
+          message: this.$i18n.t('global.service_success')
         },
         { ...this.notificationSettings, type: 'primary' }
       )

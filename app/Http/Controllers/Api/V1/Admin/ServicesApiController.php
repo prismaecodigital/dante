@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ServiceResource;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Gate;
 use PhpOffice\PhpSpreadsheet\Cell\AdvancedValueBinder;
 
 class ServicesApiController extends Controller
@@ -15,9 +17,14 @@ class ServicesApiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return new ServiceResource(Service::advancedFilter()->paginate(request('limit', 10)));
+        return new ServiceResource(Service::advancedFilter()
+            ->when($request->filled('status'), function($query) use ($request){
+                return $query->where('status', $request->query('status'));
+            })
+            ->paginate(request('limit', 10))
+        );
     }
 
     /**
@@ -75,14 +82,25 @@ class ServicesApiController extends Controller
         //
     }
 
+    public function success(Service $service)
+    {
+        $service->fill(['status' => '1']);
+        $service->save();
+
+        return response(null, Response::HTTP_NO_CONTENT);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Service $service)
     {
-        //
+        abort_if(Gate::denies('service_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $service->delete();
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

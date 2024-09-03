@@ -26,15 +26,25 @@ const actions = {
     axios
       .get(route, { params: state.query })
       .then(response => {
-        console.log(response);
-        // commit('setData', response.data.data)
-        // commit('setTotal', response.data.total)
+
+        commit('setData', response.data.data)
+        commit('setTotal', response.data.total)
       })
       .catch(error => {
         message = error.response.data.message || error.message
       })
       .finally(() => {
         commit('setLoading', false)
+      })
+  },
+  servisSuccess({ commit, state, dispatch }, id) {
+    axios
+      .post(route +'/success/'+id)
+      .then(response => {
+        dispatch('fetchIndexData')
+      })
+      .catch(error => {
+        message = error.response.data.message || error.message
       })
   },
   destroyData({ commit, state, dispatch }, id) {

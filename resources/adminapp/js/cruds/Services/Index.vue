@@ -36,7 +36,51 @@
             </button>
 					</div>
 					<div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="table-overlay" v-show="loading">
+                  <div class="table-overlay-container">
+                    <material-spinner></material-spinner>
+                    <span>Loading...</span>
+                  </div>
+                </div>
+                <datatable
+                  :columns="columns"
+                  :data="data"
+                  :total="total"
+                  :query="query"
+                  :xprops="xprops"
+                  :HeaderSettings="false"
+                  :pageSizeOptions="[10, 25, 50, 100]"
+                >
+                  <div class="row">
+                    <div class="col-12">
+                      <button
+                        type="button"
+                        class="btn btn-warning"
+                        @click="updateStatus(0)"
+                        :disabled="loading"
+                        :class="{ disabled: loading }"
+                      >
+                        Belum
+                      </button>
 
+                      <button
+                        type="button"
+                        class="btn btn-success"
+                        @click="updateStatus(1)"
+                        :disabled="loading"
+                        :class="{ disabled: loading }"
+                      >
+                        Selesai
+                      </button>
+                    </div>
+                  </div>
+                  <global-search :query="query" class="pull-left" />
+                  <header-settings :columns="columns" class="pull-right" />
+                </datatable>
+              </div>
+            </div>
 					</div>
 				</div>
 			</div>
@@ -45,11 +89,11 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex';
+  import { mapGetters, mapActions } from 'vuex'
   import TranslatedHeader from '@components/Datatables/TranslatedHeader'
   import HeaderSettings from '@components/Datatables/HeaderSettings'
   import GlobalSearch from '@components/Datatables/GlobalSearch'
-  import DatatableActions from '@components/Datatables/DatatableActions'
+  import ServiceActions from '@components/Datatables/ServiceActions'
 
   export default {
     components: {
@@ -65,8 +109,44 @@
             thComp: TranslatedHeader,
             sortable: true, 
           },
+          {
+            title: 'cruds.order.fields.customer',
+            field: 'customer',
+            thComp: TranslatedHeader,
+            sortable: true, 
+          },
+          {
+            title: 'cruds.order.fields.job',
+            field: 'service',
+            thComp: TranslatedHeader,
+            sortable: true, 
+          },
+          {
+            title: 'cruds.order.fields.date',
+            field: 'latest_service',
+            thComp: TranslatedHeader,
+            sortable: true, 
+          },
+          {
+            title: 'global.status',
+            field: 'status',
+            thComp: TranslatedHeader,
+            sortable: true,
+            tdComp: {
+              props: ['row'],
+              template: '<span>{{ row.status === "1" ? "Selesai" : "Belum" }}</span>'
+            },
+          },
+          {
+            title: 'global.actions',
+            thComp: TranslatedHeader,
+            tdComp: ServiceActions,
+            visible: true,
+            thClass: 'text-right',
+            tdClass: 'text-right td-actions',
+          }
         ],
-        query: { sort: 'upcoming_service', order: 'desc', limit: 100, s: '' },
+        query: { sort: 'upcoming_service', order: 'asc', limit: 100, s: '', status: '0' },
         xprops: {
           module: 'ServicesIndex',
           route: 'services',
@@ -95,6 +175,9 @@
         'setQuery',
         'resetState'
       ]),
+      updateStatus(status) {
+        this.query.status = status;
+      }
     }
   }
 </script>
