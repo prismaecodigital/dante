@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateServiceRequest;
 use App\Http\Resources\ServiceResource;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -65,9 +66,11 @@ class ServicesApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Service $service)
     {
-        //
+        return response([
+            'data' => $service
+        ]);
     }
 
     /**
@@ -77,9 +80,19 @@ class ServicesApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateServiceRequest $request, Service $service)
     {
-        //
+        try {
+            $validated = $request->validated();
+            $service->fill($validated);
+            $service->save();
+
+            return (new ServiceResource($service))
+            ->response()
+            ->setStatusCode(Response::HTTP_ACCEPTED);
+        } catch (\Exception) {
+            return redirect()->back();
+        }
     }
 
     public function success(Service $service)

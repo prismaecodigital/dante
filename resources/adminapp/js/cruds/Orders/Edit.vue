@@ -122,7 +122,7 @@
                   </div>
                 </div>
                 <div class="col-md-6">
-<div
+                  <div
                     class="form-group bmd-form-group"
                     :class="{
                       'is-filled': entry.address,

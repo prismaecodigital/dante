@@ -48,9 +48,9 @@ const routes = [
         meta: { title: 'cruds.service.title' }
       },
       {
-        path: 'services/create',
-        name: 'services.create',
-        // component: () => import('@cruds/Services/Create.vue'),
+        path: 'services/:id/edit',
+        name: 'services.edit',
+        component: () => import('@cruds/Services/Edit.vue'),
         meta: { title: 'cruds.service.title' }
       },
       {
