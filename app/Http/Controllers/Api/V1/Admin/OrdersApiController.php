@@ -45,15 +45,18 @@ class OrdersApiController extends Controller
 
         $order = Order::create($data);
 
-        $service = [
-            'upcoming_service' => $request->input('upcoming'),
-            'customer' => $request->input('customer'),
-            'address' => $request->input('address'),
-            'service' => $request->input('job'),
-            'latest_service' => $request->input('date'),
-            'status' => '0'
-        ];
-        Service::create($service);
+        if($request->input('jenis') === '01'){
+            $service = [
+                'upcoming_service' => $request->input('upcoming'),
+                'customer' => $request->input('customer'),
+                'address' => $request->input('address'),
+                'service' => $request->input('job'),
+                'latest_service' => $request->input('date'),
+                'status' => '0'
+            ];
+            Service::create($service);
+        }
+        
 
         if ($media = $request->input('photodata', [])) {
             Media::whereIn('id', data_get($media, '*.id'))
