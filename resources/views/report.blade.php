@@ -231,6 +231,17 @@
 			</tbody> --}}
 		</table>
 	@endif
+
+	{{-- Photo Data --}}
+	<div style="display:block;position:relative;width:100%;">
+	@if ($order->jenis_order === '02' & !empty($order->photodata))	
+		<div style="display:flex;gap:0.5rem;flex-flow:row wrap;">
+		@foreach ($order->photodata as $photo)
+			<img src="{{$photo['path'] ?? ''}}" style="flex:auto; width:auto; height:auto;" alt="Photo data" loading="lazy">
+		@endforeach
+		</div>
+	@endif
+	</div>
 	
 	{{-- Payment --}}
 	<b>Instruksi Pembayaran</b>
