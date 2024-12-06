@@ -71,7 +71,7 @@
 
 	{{-- Title Report --}}
 	<div style="text-align:center; padding-bottom: 19px">
-		<h4>LAPORAN HASIL PEKERJAAN</h4>
+		<h4>INVOICE HASIL PEKERJAAN</h4>
 	</div>
 
 	{{-- Data Order --}}

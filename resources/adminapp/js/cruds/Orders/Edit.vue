@@ -192,7 +192,6 @@
                 <th>Satuan</th>
                 <th>Harga</th>                
                 <th>Ket</th>
-                <th>Notes</th>
               </thead>
               <tbody>
                 <tr v-for="(item, k) in entry.items" :key="k">
@@ -213,9 +212,6 @@
                   </td>
                   <td>
                       <input class="form-control wrapText" type="text" :value="item.ket" @input="updateItemKet(k, $event)"/>
-                  </td>
-                  <td>
-                      <input class="form-control wrapText" type="text" :value="item.notes" @input="updateItemNotes(k, $event)"/>
                   </td>
                 </tr>
               </tbody>

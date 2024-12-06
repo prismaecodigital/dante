@@ -33,6 +33,10 @@ class UpdateOrderRequest extends FormRequest
                 'string',
                 'nullable',
             ],
+            'notes' => [
+                'string',
+                'nullable',
+            ],
             'photo' => [
                 'array',
                 'nullable',

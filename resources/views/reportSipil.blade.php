@@ -70,7 +70,7 @@ img {
 
 
 <center style="padding-bottom: 19px">
-	<h4>LAPORAN HASIL PEKERJAAN</h4>
+	<h4>INVOICE HASIL PEKERJAAN</h4>
 </center>
 
 <table class='table1'>
@@ -93,10 +93,6 @@ img {
 	<tr class="less-space">
 		<th style="">Keluhan</th>
 		<td>: {{$order->complaint ?? '-'}}</td>
-	</tr>
-	<tr class="less-space">
-		<th></th>
-		<td></td>
 	</tr>
 </table>
 
@@ -161,7 +157,9 @@ img {
 		
 		<tr>
 			<th class="text-center">Diajukan</th>
-			<th class="text-center">{{ date('d M Y', strtotime('now')) }}<br>Disetujui</th>
+			<th class="text-center">
+				{{ date('d M Y', strtotime('now')) }}<br>Disetujui
+			</th>
 		</tr>
 	</thead>
 	<tbody>
