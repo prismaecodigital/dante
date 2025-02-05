@@ -124,15 +124,30 @@ class OrdersApiController extends Controller
     
     protected function generateCode($createdAt, $type)
     {
-        $count = Order::whereYear('created_at', $createdAt)
-            ->whereMonth('created_at', $createdAt)
-            ->count();
-    
-        $number = str_pad($count + 1, 3, "0", STR_PAD_LEFT);
-        $dateCode = substr($createdAt, 2, 2) . substr($createdAt, 5, 2);
-    
-        return 'DT' . $type . $dateCode . $number;
-    }
+        // Extract year and month from createdAt
+        $year = date('Y', strtotime($createdAt));
+        $month = date('m', strtotime($createdAt));
+
+        // Get the latest order where year and month match
+        $latestOrder = Order::whereYear('created_at', $year)
+            ->whereMonth('created_at', $month)
+            ->latest('created_at')
+            ->first();
+
+        // Determine the next order number
+        if ($latestOrder && preg_match('/(\d{3})$/', $latestOrder->code, $matches)) {
+            $nextNumber = str_pad((int) $matches[1] + 1, 3, "0", STR_PAD_LEFT);
+        } else {
+            $nextNumber = '001';
+        }
+
+        // Format date code YYMM
+        $dateCode = date('y', strtotime($createdAt)) . $month;
+
+        // Generate new order code
+        return 'DT' . $type . $dateCode . $nextNumber;
+}
+
 
     public function create()
     {
