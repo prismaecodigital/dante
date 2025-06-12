@@ -65,7 +65,7 @@ img {
 </style>
 
 <div style="text-align: right; padding-bottom:10px">
-	<img src="img/logo_dante2.png" width="30%" alt="logo Darmawan Teknik">
+	<img src="img/spaka-teknik.png" width="30%" alt="logo Spaka Teknik">
 </div>
 
 
