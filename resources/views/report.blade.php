@@ -66,7 +66,7 @@
 
 	{{-- Logo --}}
 	<div style="text-align: right; padding-bottom:10px">
-		<img src="img/spaka-teknik.png" width="30%" alt="logo Spaka Teknik">
+		<img src="img/spaka-teknik.png" style="width:auto;height:70px;" alt="logo Spaka Teknik">
 	</div>
 
 	{{-- Title Report --}}
