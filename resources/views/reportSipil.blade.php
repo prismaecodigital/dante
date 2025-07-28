@@ -150,7 +150,7 @@ img {
 </table>
 
 <b>Instruksi Pembayaran</b>
-<p style="font-size: 10pt">- Transfer a/n Muhammad Awaldianto. BCA No Rek. 0954366134</p>
+<p style="font-size: 10pt">- Transfer a/n PT AWAL SPAKA TEKNIK. BCA No Rek. 7475428021</p>
 
 <table class="table table2 table-bordered">
 	<thead>
