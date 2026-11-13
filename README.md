@@ -1,5 +1,40 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
+## Running DATEK with Docker
+
+The stack is Docker-first: PHP 8.5.12-FPM, nginx, MySQL 8.0, Adminer and (in
+development) a Vite dev server. Everything is wrapped by the `Makefile`.
+
+```bash
+make env      # creates docker/.env from docker/.env.example
+make key      # prints a fresh APP_KEY — paste it into docker/.env
+make dev-up   # http://localhost:8080, Vite on :5173, Adminer on :8081
+make test     # php artisan test against the dante_testing database
+```
+
+Production builds and releases:
+
+```bash
+make prod-build                     # build both images for this machine
+make release VERSION=2026-11-04.1   # multi-arch build + push to the registry
+make prod-deploy                    # pull the pinned images and roll out
+```
+
+`make help` lists every target. The compose files are split so a stack manager
+on the VM only ever sees the runtime file (`docker-compose.prod.yml`): no
+`build:`, no `env_file:`, no bind mounts.
+
+### Versions
+
+| Component | Version |
+| --- | --- |
+| PHP | 8.5.12 |
+| Laravel | 13.40 |
+| Node.js | 26.12.1 |
+| Vite | 7.3.7 (+ `@vitejs/plugin-vue2`, Vue 2.7.16) |
+| MySQL | 8.0 |
+
+
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>

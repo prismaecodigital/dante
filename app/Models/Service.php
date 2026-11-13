@@ -14,11 +14,9 @@ class Service extends Model
 
     public $table = 'services';
 
-    protected $dates = [
-        'upcoming_service',
-        'latest_service',
-        'created_at',
-        'updated_at',
+    protected $casts = [
+        'upcoming_service' => 'datetime',
+        'latest_service'  => 'datetime',
     ];
 
     protected $orderable = [

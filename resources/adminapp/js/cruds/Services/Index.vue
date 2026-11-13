@@ -134,7 +134,9 @@
             sortable: true,
             tdComp: {
               props: ['row'],
-              template: '<span>{{ row.status === "1" ? "Selesai" : "Belum" }}</span>'
+              render(h) {
+                return h('span', this.row.status === '1' ? 'Selesai' : 'Belum')
+              }
             },
           },
           {

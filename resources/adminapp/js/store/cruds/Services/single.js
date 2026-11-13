@@ -1,4 +1,4 @@
-import { objectToFormData } from "object-to-formdata";
+import { serialize as objectToFormData } from "object-to-formdata";
 
 function initialState() {
   return {

@@ -24,11 +24,6 @@ class Order extends Model implements HasMedia
         'jenis_order_label'
     ];
 
-    protected $dates = [
-        'date',
-        'created_at',
-        'updated_at',
-    ];
 
     protected $orderable = [
         'id',
@@ -86,7 +81,7 @@ class Order extends Model implements HasMedia
 
     public function getDateAttribute($value)
     {
-        return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d-m-Y') : null;
+        return $value ? Carbon::parse($value)->format('d-m-Y') : null;
     }
 
     public function setDateAttribute($value)

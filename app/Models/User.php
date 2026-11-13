@@ -31,10 +31,6 @@ class User extends Authenticatable
         'email',
     ];
 
-    protected $dates = [
-        'created_at',
-        'updated_at',
-    ];
 
     protected $filterable = [
         'id',

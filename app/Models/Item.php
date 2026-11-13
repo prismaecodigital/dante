@@ -13,10 +13,6 @@ class Item extends Model
 
     public $table = 'items';
 
-    protected $dates = [
-        'created_at',
-        'updated_at',
-    ];
 
     protected $orderable = [
         'id',

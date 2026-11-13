@@ -3,11 +3,13 @@
 /public/hot
 /public/storage
 /storage/*.key
+/storage/fonts
 /vendor
 .env
 .env.backup
 .env.production
 .phpunit.result.cache
+/.phpunit.cache
 Homestead.json
 Homestead.yaml
 auth.json
@@ -16,3 +18,10 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# Docker
+/docker/.env
+/docker/mysql/dump/*
+!/docker/mysql/dump/.gitkeep
+dante-images.tar.gz
+backup-*.sql

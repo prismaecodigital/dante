@@ -1,0 +1,42 @@
+# Build context hygiene. Keep this list minimal for runtime directories:
+# stripping storage/framework/views or bootstrap/cache from the image makes
+# every request fail with "Please provide a valid cache path."
+
+.git
+.gitattributes
+.github
+docs
+
+# Dependencies and build output are produced inside the image
+node_modules
+vendor
+public/build
+public/hot
+public/adminapp
+public/mix-manifest.json
+
+# Local state
+storage/app/*
+!storage/app/public
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/testing
+storage/framework/views/*
+storage/logs/*
+bootstrap/cache/*
+.phpunit.result.cache
+.phpunit.cache
+*.sql
+*.sql.gz
+*.tar.gz
+
+# Secrets — .env.testing is committed on purpose (non-secret test defaults)
+.env
+.env.*
+!.env.testing
+docker/.env
+
+# Development-only files
+docker/mysql/dump/*
+!docker/mysql/dump/.gitkeep
+.editorconfig

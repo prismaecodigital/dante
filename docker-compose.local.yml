@@ -1,0 +1,12 @@
+services:
+  nginx:
+    ports:
+      - "${APP_PORT:-8090}:80"
+
+  db:
+    ports:
+      - "127.0.0.1:${DB_HOST_PORT:-3308}:3306"
+
+  adminer:
+    ports:
+      - "127.0.0.1:${ADMINER_PORT:-8091}:8080"

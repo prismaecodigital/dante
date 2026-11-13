@@ -153,7 +153,7 @@ const actions = {
 
 const mutations = {
   setEntry(state, entry) {
-    state.entry = entry
+    state.entry = { ...initialState().entry, ...entry }
   },
   setName(state, value) {
     state.entry.name = value
@@ -192,7 +192,7 @@ const mutations = {
     state.entry.deleted_at = value
   },
   setLists(state, lists) {
-    state.lists = lists
+    state.lists = { ...initialState().lists, ...lists }
   },
   setLoading(state, loading) {
     state.loading = loading

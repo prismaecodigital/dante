@@ -17,7 +17,7 @@ import ServicesSingle from './cruds/Services/single'
 
 Vue.use(Vuex)
 
-const debug = process.env.NODE_ENV !== 'production'
+const debug = import.meta.env.DEV
 
 export default new Vuex.Store({
   modules: {

@@ -1,0 +1,18 @@
+services:
+  app:
+    build:
+      context: .
+      target: prod
+      args:
+        PHP_VERSION: ${PHP_VERSION:-8.5.12}
+        NODE_VERSION: ${NODE_VERSION:-26.12.1}
+        COMPOSER_VERSION: ${COMPOSER_VERSION:-2.11.1}
+        VITE_VUE_APP_I18N_LOCALE: ${VITE_VUE_APP_I18N_LOCALE:-id}
+        VITE_VUE_APP_I18N_FALLBACK_LOCALE: ${VITE_VUE_APP_I18N_FALLBACK_LOCALE:-id}
+
+  nginx:
+    build:
+      context: .
+      target: web_prod
+      args:
+        NGINX_VERSION: ${NGINX_VERSION:-1.27-alpine}

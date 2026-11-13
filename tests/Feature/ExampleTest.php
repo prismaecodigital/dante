@@ -12,10 +12,22 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    public function test_the_application_returns_a_successful_response()
+    public function test_the_root_redirects_to_the_login_page()
     {
         $response = $this->get('/');
 
-        $response->assertStatus(200);
+        $response->assertRedirect('/login');
+    }
+
+    /**
+     * The login page is rendered by the blade layout.
+     *
+     * @return void
+     */
+    public function test_the_login_page_renders()
+    {
+        $response = $this->get('/login');
+
+        $response->assertOk();
     }
 }
